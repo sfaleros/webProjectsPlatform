@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>проект</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta property="og:title" content="проект з хімії"/>
+    <meta property="og:description" content="сайт створений для систематизації знань за 10 клас"/>
+    <meta property="og:image" content="{% static 'css/ms.jpg' %}"/>
+
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}" />
+    <link rel="icon" href="{% static 'css/2.png' %}">
+
+</head>
+
+
+<body style="margin-right:5% ;  margin-left: 1% ;">
+
+
+    <h1>Проект Романіва Юрія </h1>
+    <h2>"3D моделі ненасичених вуглеводнів"</h2>
+
+
+    <hr>  <br>
+
+    <h5>Мета :</h5>
+    <p id="m">ілюстрація, популяризація та узагальнення знаннь хімії, використання 3d моделювання для ілюстрації навчального матеріалу </p>
+
+    <h3>метан</h3>
+
+    <embed  height="540" allowfullscreen src="{% static '3d/metan.html' %}" ></embed>
+    <p style="float: right;width: 45%;">метан (CH4)<br> найпростіший представник алканів <br>кут між звязками становить 109° <br> довжина звязків з воднем становить 0,1087 нм.</p>
+
+
+    <hr> <br>
+
+    <h3>етен</h3>
+
+    <embed  height="540" allowfullscreen src="{% static '3d/eten.html' %}" ></embed>
+    <p style="float: right;width: 45%;">етилен(C2H4)<br> найпростіший представник алкенів <br>кут між звязками становить 120° <br> довжина подвійних звязків  становить 0,134 нм.</p>
+
+
+
+    <hr>  <br>
+
+    <h3>етин</h3>
+
+    <embed  height="540" allowfullscreen src="{% static '3d/acetilen.html' %}" ></embed>
+    <p style="float: right;width: 45%;">ацетилен(C2H2)<br> найпростіший представник алканів <br>кут між звязками становить 180°(молекула плоска) <br> довжина потрійних звязків з воднем становить 0,120 нм.</p>
+
+
+    <hr>  <br>
+    <table>
+        <td><p>бутан</p></td>
+        <td><p id="iso">ізобутан</p></td>
+    </table>
+
+
+    <embed class="f" width="25%" height="540" allowfullscreen src="{% static '3d/butan.html' %}" ></embed>
+    <embed class="f" width="25%" height="540" allowfullscreen src="{% static '3d/isoButan.html' %}" ></embed>
+    <p style="float: right;width: 45%;">порівняння бутану на його ізомеру<br>бутан та ізобутан мають одинаковий склад (C4H10)<br>але різну будову та фізичні та хімічні характиристики<br>в молекулі бутану всі атоми карбону зєднані послідовно<br>а в молекулі його ізомеру вони всі обєднані з центральним.<br>різницю можна побачити на цих модлях</p>
+
+    <br>
+    <small>моделі конвертовані у веб форму завдяки blend4Web</small>
+
+
+
+
+</body>

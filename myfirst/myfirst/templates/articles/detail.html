@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}{{article.article_title}}{% endblock %}
+
+{% block content %}
+
+<h2>
+	{{article.article_tag1}}.{{article.article_tag2}}
+<br>
+{{article.article_title}}
+</h2>
+
+<a href="{% url 'articles:index' %}">
+	⟵
+<a>
+
+<p>{{article.article_text}}</p>
+
+
+<details>
+	<summary>
+		докладніше
+	</summary>
+	<small>
+		<p>	рядки вводу <br>
+			можна використовувати<br>
+			 як калькулятор <br>
+			множення(*) <br>
+			степінь(**) <br>
+			корінь(^()) <br> 
+			або(√()) або(sqrt()) 
+
+
+		</p>
+	</small>
+</details>
+
+<h3 class='one'>{{allert}}</h3>
+
+
+
+<form action="{% url 'articles:detail' article.id %}" method="post">
+	{% csrf_token%}
+<table>
+<td>
+	<h1 title="{{article.article_var1}}" >
+	{{var.0}}
+	</h1>
+	<input name="sim1" value="{{endvar.0}}" placeholder='{{article.article_text}}'>
+
+	<h1 title="{{article.article_var2}}">
+	{{var.1}}
+	</h1>
+	<input name="sim2" value="{{endvar.1}}" placeholder='{{article.article_f1}}'>
+
+	<h1 title="{{article.article_var3}}" >
+	{{var.2}}
+	</h1>
+	<input name="sim3" value="{{endvar.2}}" placeholder='{{article.article_f2}}'>
+
+	{%if lenvar > 3 %}
+
+	<h1 title="{{article.article_var4}}">
+	{{var.3}}
+	</h1>
+	<input name="sim4" value="{{endvar.3}}" placeholder='{{article.article_f3}}'>
+
+	{%if lenvar > 4 %}
+
+	<h1 title="{{article.article_var5}}" >
+	{{var.4}}
+	</h1>
+	<input name="sim5" value="{{endvar.4}}" placeholder='{{article.article_f4}}'>
+
+	{%if lenvar > 5 %}
+
+	<h1 title="{{article.article_var6}}" >
+	{{var.5}}
+	</h1>
+	<input name="sim6" value="{{endvar.4}}" placeholder='{{article.article_f5}}'>
+
+	{% endif %}
+	{% endif %}
+	{% endif %}
+
+	<button type="submit">обчислити</button>
+</td>
+</table>
+</form>
+<hr>
+
+
+
+{% endblock %}

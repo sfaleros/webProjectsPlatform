@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}тематичні формули{% endblock %}
+
+{% block content %}
+{% if topic_list %}
+	{% for i in topic_list %}
+		<h3>
+			<a href="{% url 'articles:detail' i.0 %}">{{i.1}}({{i.2}})</a>
+		<h3>
+	{% endfor %}
+{% else %}
+	<h2>тут поки що пусто </h2>
+{% endif %}
+
+{% endblock %}

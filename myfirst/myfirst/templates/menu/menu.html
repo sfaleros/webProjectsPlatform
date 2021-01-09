@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+
+	<meta property="og:title" content="проектний репозиторій"/>
+	<meta property="og:image" content="{% static 'images/ms.jpg' %}"/>
+
+	<title>галерея</title>
+	<link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+	<link rel="icon" href="{% static 'icons/nuclear.png' %}">
+
+
+</head>
+<body>
+<div class="sidenav">
+
+ 	<a href="#about">
+	  <h4>навігація</h4>
+	</a>
+
+	<a href="tests">тест на вимову</a>
+	<br>
+	<a href="articles">обчислювач</a>
+</div>
+
+
+<div class="main">
+
+<h2 id="center">проектний репозиторій</h2>
+
+<h3>шкільні проекти</h3>
+
+
+<h4>хімія</h4>
+<ul>
+	<li> 			
+		<a href="chem1">project</a>
+	</li>			
+</ul>
+
+</div>
+	
+</body>
+</html>

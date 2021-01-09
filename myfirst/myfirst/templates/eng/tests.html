@@ -1,0 +1,41 @@
+{% extends 'engBase.html' %}
+
+{% block title %}EngTest{% endblock %}
+
+
+
+{% block content %}
+
+<a href="/admin">панель адміністратора
+</a>
+
+<center><h3>10Б</h3></center>
+<div id="list">
+
+
+	{% if mainTests %}
+		{% for i in mainTests %}	
+				<a  href="{% url 'eng:detail' i.id %}">
+					<button id="toTest">{{i.test_title}}</button>
+				</a>	<br>	
+		{% endfor %}
+
+
+
+	{% else %}
+		статті не знайдені
+	{%endif%}
+
+</div>
+
+<center>
+	<hr>
+	<h4 id="warping">тест буде працювати тільки в компютерних браузерах Chrome та Firefox</h4>
+	<h5 id="warping">також можуть виникнути проблеми з прохожденням тесту на мобільних пристроях</h5>
+
+</center>
+
+
+<footer></footer>
+
+{% endblock %}

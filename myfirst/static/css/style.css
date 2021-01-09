@@ -1,0 +1,107 @@
+body {
+
+	/*background-image: linear-gradient(to bottom right, rgb(14, 21, 89), rgb(19, 26, 93), rgb(24, 30, 96), rgb(29, 35, 100), rgb(34, 40, 104), rgb(39, 44, 108), rgb(45, 49, 111), rgb(50, 53, 115), rgb(55, 58, 119), rgb(60, 63, 123), rgb(65, 67, 126), rgb(70, 72, 130));*/
+	background-position: center;
+	/*background: url(https://images3.alphacoders.com/875/thumb-1920-87577.jpg);*/
+	background-size: 100%;
+	background: rgb(28,91,153);
+	background: linear-gradient(90deg, rgba(28,91,153,1) 0%, rgba(21,137,193,1) 71%, rgba(4,194,232,1) 96%);
+}
+
+h2 {
+	border-color: #fff;
+	color: #00f7ff;
+}
+
+p {
+	color: #ffff;
+}
+
+input {
+	border-color: #156e94;
+	background-color: #000000;
+	color: #ff1f1f;
+	border-radius: 30px 30px 30px 30px;
+}
+
+input:focus {
+  background-color: #2c2f82;
+  border-color: #ff1f1f;   
+  border-radius: 30px 30px 30px 30px; 
+}
+
+hr {
+	border-color: #00ffdd;
+	border-width: 2px;
+}
+
+button {
+	border-color: #156e94;
+	background-color: #000000;
+	color: #156e94;
+	border-radius: 30px 30px 30px 30px;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+    margin-block-end: 1em;
+    width: 100%;
+    
+}
+
+.text {
+	color: #fff;
+}
+
+h1 {
+	 border-color: #fff;
+	 color: #00f7ff;
+}
+
+p {
+	color: #fff;
+}
+
+h3 {
+	 border-color: #fff;
+	 color: #00f7ff;
+}
+
+h4 {
+	 border-color: #fff;
+	 color: #00f7ff;
+}
+
+h5 {
+	 border-color: #fff;
+	 color: #00f7ff;
+}
+
+h6 {
+	 border-color: #fff;
+	 color: #00f7ff;
+}
+
+li {
+	color: #4b13f2;
+	border-color: #fff;
+}
+
+details {
+	color : #00f7ff;
+}
+
+.one {
+	color: red;
+}
+
+* {
+    font-family: Consolas;
+    src: url(consolas.TTF);
+   }
+
+
+#mainBlock{
+	margin-left: 5%;
+  }

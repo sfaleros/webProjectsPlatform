@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+
+	<meta property="og:title" content="English words test"/>
+	<meta property="og:description" content="сайт створений для контролю та узагальнення знань з Англійської мови"/>
+	<meta property="og:image" content="{% static 'images/engGumor.jpg' %}"/>
+
+	<title>{% block title%}EngTest{% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'css/eng/mainStyle.css' %}" />
+	<link rel="icon" href="{% static 'icons/eng_icon.ico' %}">
+
+</head>
+<body>
+
+	{% block content %}{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,351 @@
+@media (orientation: portrait){
+
+
+  body {
+    font-size: 100%;
+    font-family: sans-serif;
+
+
+  }
+
+  a{
+    background-color: #8064ff;
+  }
+
+  progress {
+    height: 100%;
+    width: 100%;
+  }
+
+  footer{
+    background-color: #014f8f;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+  }
+
+  #recognize {
+    width:90%;
+    height:100%;
+    background-color: transparent;
+    border: none;
+
+  }
+  button:focus {
+    outline: none;
+  }
+
+  canvas{
+    width: 200px;
+    height: 80px;
+  }
+
+  button > img{
+    background-color: transparent;
+    border: none;
+    width:100%;
+    height:100%;
+  }
+
+  #center{
+    width:100%;
+    height:100%;
+  }
+
+
+  #nextButton{
+    font-size: 2vw;
+    background-color: rgb(121, 188, 250);
+    width: 100%;
+    height: 43%;
+    border-radius: 29%;
+    border: 3px solid #124874;
+  }
+
+  #nextButton:active{
+    background-color: rgb(0, 81, 128);
+  }
+
+  #toTest{
+    font-size: large;
+    width: 60%;
+    height: 5%;
+    background-color: #2196F3;
+    border-radius: 12%;
+    border: 2px solid #1360a0;
+    margin-top: 0.3%;
+
+  }
+
+  #list{
+    margin-left: 20%;
+    height: 70%;
+    width: 100%;
+  }
+
+
+  #warping{
+  color: rgb(235, 4, 50);
+
+  }
+
+
+
+
+
+
+  #message {
+    text-align: center;
+    width: 25%;
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  #main{
+    height: 80%;
+    width: 40%;
+    float:left;
+  }
+
+  #settings{
+    padding: 10px;
+    border: 3px dashed #014f8f ;
+    margin-left: 2%;
+    float:left;
+    width: 27%;
+  }
+
+  #prompt{
+    display: none; 
+  }
+
+
+}
+
+
+
+@media (orientation: landscape) {
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-size: 100%;
+    font-family: sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+  }
+
+  progress {
+    height: 100%;
+    width: 100%;
+  }
+
+  canvas{
+    width: 200px;
+    height: 80px;
+  }
+
+  a{
+    background-color: #8064ff;
+  }
+  footer{
+    background-color: #014f8f;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+  }
+
+  #recognize {
+    width:40%;
+    height:34%;
+    background-color: transparent;
+    border: none;
+
+  }
+  button:focus {
+    outline: none;
+  }
+
+  button > img{
+    background-color: transparent;
+    border: none;
+    width:100%;
+    height:100%;
+  }
+
+  #center{
+    width:100%;
+    height:100%;
+  }
+
+
+  #nextButton{
+    font-size: 1.5vw;
+    background-color: rgb(121, 188, 250);
+    width: 45%;
+    height: 8%;
+    border-radius: 29%;
+    border: 3px solid #124874;
+  }
+
+  #nextButton:active{
+    background-color: rgb(0, 81, 128);
+  }
+
+  #toTest{
+    font-size: large;
+    width: 60%;
+    height: 5%;
+    background-color: #2196F3;
+    border-radius: 12%;
+    border: 2px solid #1360a0;
+    margin-top: 0.3%;
+
+  }
+
+  #list{
+    margin-left: 20%;
+    height: 70%;
+    width: 100%;
+  }
+
+
+  #warping{
+  color: rgb(235, 4, 50);
+
+  }
+
+
+
+  #message {
+    text-align: center;
+    width: 25%;
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  #main{
+    height: 80%;
+    width: 40%;
+    float:left;
+  }
+
+  #settings{
+    padding: 10px;
+    border: 3px dashed #014f8f ;
+    margin-left: 2%;
+    float:left;
+    width: 27%;
+  }
+
+  #prompt{
+    display: none; 
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*====================================================================================================================================================*/
+
+/* The switch - the box around the slider */
+.switch {
+position: relative;
+display: inline-block;
+width: 60px;
+height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 26px;
+width: 26px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked + .slider {
+background-color: #2196F3;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}
+
+
+/*=======================================================================================================================================================================*/

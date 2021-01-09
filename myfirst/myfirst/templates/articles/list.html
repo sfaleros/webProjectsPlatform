@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}останні статті{% endblock %}
+
+{% block content %}
+
+	{% if phis_list %}
+
+		<hr>
+		<h3>хімія:</h3>
+		<ul>
+		{% for i in chemestry_list %}
+			<li> 			
+				<a href="{% url 'articles:groupdetail' i.id %}">{{i.obj_topic}}</a>
+			</li>			
+		{% endfor %}
+		</ul>
+
+		<hr>
+		<h3>фізика</h3>
+		<ul>
+		{% for l in phis_list %}
+			<li>
+				<a href="{% url 'articles:groupdetail' l.id %}">{{l.obj_topic}}</a>
+			</li>
+		{% endfor %}
+		</ul>
+
+				<hr>
+		<h3>алгебра</h3>
+		<ul>
+		{% for l in alg_list %}
+			<li>
+				<a href="{% url 'articles:groupdetail' l.id %}">{{l.obj_topic}}</a>
+			</li>
+		{% endfor %}
+		</ul>
+
+				<hr>
+		<h3>геометрія</h3>
+		<ul>
+		{% for l in geo_list %}
+			<li>
+				<a href="{% url 'articles:groupdetail' l.id %}">{{l.obj_topic}}</a>
+			</li>
+		{% endfor %}
+		</ul>
+
+		<hr>
+
+
+
+
+	{% else %}
+		статті не знайдені
+	{%endif%}
+
+<details>
+	<summary>
+		про сайт
+	</summary>
+	<small>
+		<p>	
+			платформа : django <br>
+
+			створення & редагування контенту виконується <br>
+			за рахунок панелі адміністратора <br>
+
+			версія 2.0 (бета) <br>
+			контент : тестовий
+			перший продакшн : 0.3.09.2020 <br>
+			розробник-адміністратор : ingemheir.gmail.com <br>
+			дизайнер : romaniv.maximus@gmail.com
+
+		</p>
+	</small>
+</details>
+
+
+{% endblock %}

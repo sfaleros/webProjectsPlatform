@@ -1,0 +1,19 @@
+body {
+    font-family: 'Open sans', sans-serif;
+    color: whitesmoke;
+
+    background: rgb(34,33,42);
+    background: -moz-linear-gradient(148deg, rgba(34,33,42,1) 26%, rgba(41,42,47,1) 48%, rgba(49,49,59,1) 65%, rgba(39,41,66,1) 83%);
+    background: -webkit-linear-gradient(148deg, rgba(34,33,42,1) 26%, rgba(41,42,47,1) 48%, rgba(49,49,59,1) 65%, rgba(39,41,66,1) 83%);
+    background: linear-gradient(148deg, rgba(34,33,42,1) 26%, rgba(41,42,47,1) 48%, rgba(49,49,59,1) 65%, rgba(39,41,66,1) 83%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#22212a",endColorstr="#272942",GradientType=1);
+
+}
+
+#iso {
+    margin-left: 580px; 
+   }
+
+   #m {
+    margin-left: 20px; 
+   }

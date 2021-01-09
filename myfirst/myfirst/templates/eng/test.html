@@ -1,0 +1,362 @@
+{% extends 'engBase.html' %}
+{% load static %}
+
+{% block title %}EngTest{% endblock %}
+
+{% block content %}
+
+
+<div id="settings">
+
+  <p>Британська вимова
+  <label class="switch">
+    <input type="checkbox" , id="british">
+    <span class="slider round"></span>
+  </label>
+  </p>
+
+    <p>режим самоперевірки
+  <label class="switch">
+    <input type="checkbox"  id="selfTest">
+    <span class="slider round"></span>
+  </label>
+  </p>
+  <br>
+      інструкція:
+    <br>
+    <small>
+      <br>
+        1. перевірити наявність пристрою вводу звуку на вашому комп'ютері.
+        (це можна зробити завдяки голосовому пошуку Google).
+        <br><br>
+        2. натиснути на синю кнопку.<br>
+        3. натиснути на мікрофон(він працює поки світиться червоним).<br>
+        4. прекласти та продиктувати слово що зявиться зверх.у<br>
+        5. повторити.<br>
+        <br>
+        зверніт увагу на те, що диктувати переклад потрібно чітко та гучно.<br> 
+        <br>
+        деколи мікрофон припиняє розпізнавання, це означає,
+        що він намагається розпізнати супутні шуми.
+        в такому випадку на нього необхідно двічі натиснути(перезапустити).такі дії рекомендовано повторювати якомога частіше.
+
+  
+  
+      </br>
+    </small>
+  </details>
+</div>
+
+
+
+
+<div id="main">
+<center id="center">
+
+
+
+<h2 id="quest"></h2>
+
+<div id="prompt">
+<details>
+  <summary>
+    підсказка
+  </summary>
+  <small>
+    <p id="promptText"></p>
+  </small>
+</details>
+</div>
+
+
+<p>
+  <input type="text", id="interim" ,  disabled , readonly>
+</p>
+<p>
+  <input id="message", rows="1", disabled , readonly></input>
+</p>
+
+<button id="recognize" >
+  <img src="{% static 'images/microphon.png' %}" , id="micro" />
+</button>
+
+<h3 id="res"></h3>
+
+<button id="nextButton", onclick="input()" >розпочати тест</button>
+<table>
+  <td><h3 id="r"></h3></td>
+  <td><canvas id="canvas"></canvas></td>
+</table>
+<h3 id="r"></h3>
+
+<div id="timer_inp"></div>
+<div id="endMay"></div>
+
+</center>
+</div>
+
+
+<footer>
+  <progress  id="progress" , min="0" , max="1" , value="1"></progress>
+</footer>
+
+<script>
+
+  
+
+
+var ukrWords = {{ ukrWords | safe }}
+var engWords = {{ engWords | safe }}
+const time = {{time}}
+
+const allBall = engWords.length
+var ball = 0;
+var engWord;
+var random;
+var timerOn = false;
+var promblock;
+
+var occent = "en-US";
+
+const btnRecognize = document.querySelector("#recognize");
+const txtInterim = document.querySelector("#interim");
+const txtMessage = document.querySelector("#message");
+const res = document.getElementById("res");
+const progress = document.getElementById("progress");
+const micro = document.getElementById("micro");
+const nextButton = document.getElementById("nextButton");
+
+//"use strict";function activate(){progress.max=allBall;if(document.getElementById("british").checked==true){}if(document.getElementById("selfTest").checked==true){document.getElementById("prompt").style.display="block";document.getElementById("timer_inp").style.display="none";promblock=false}else{promblock=true}document.getElementById("settings").style.visibility="hidden"}function input(){if(ukrWords.length!==0){if(nextButton.innerHTML!=="наступний тест"){nextButton.innerHTML="наступний тест";activate()}btnRecognize.disabled=false;nextButton.disabled=true;random=Math.floor(Math.random()*ukrWords.length);engWord=engWords[random];isSpace=engWord.indexOf(" ")!==-1;document.getElementById("quest").innerHTML=ukrWords[random];if(!promblock){document.getElementById("promptText").innerHTML=engWord}else{document.getElementById("timer_inp").innerHTML=time;timerOn=true;setTimeout(timer,1000)}ukrWords.splice(random,1);engWords.splice(random,1);progress.value=allBall-engWords.length;txtInterim.value="";txtMessage.value="";document.body.style.background="#ffffff";document.getElementById("res").innerHTML=""}else{end()}}function timer(){var a=document.getElementById("timer_inp");a.innerHTML--;if(timerOn){if(a.innerHTML==0){document.getElementById("res").innerHTML="час вичерпано";btnRecognize.disabled=true;nextButton.disabled=false;setTimeout(function(){},1000);document.body.style.background="#ffd4d4";stop()}else{setTimeout(timer,1000)}}}function isMobile(){return/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)}const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition||window.mozSpeechRecognition||window.msSpeechRecognition;class Recognizer{constructor(){this.recognition=new SpeechRecognition();this.recognition.lang=occent;if(!isMobile()){this.recognition.continuous=true;this.recognition.interimResults=true}this.isRecognizing=false;this.transcript=""}start(handler){this.transcript="";this.recognition.onresult=event=>{this.onResult(event,handler)};this.recognition.start();this.isRecognizing=true;console.log("Started recognition")}stop(){this.recognition.abort();this.isRecognizing=false;console.log("Stopped recognition")}onResult(event,handler){var interim_transcript="";for(var i=event.resultIndex;i<event.results.length;++i){var result=event.results[i];let mainWord=result[0].transcript.toLowerCase();let mainList=mainWord.split(" ");if(mainWord.indexOf(engWord)!==-1){if(!isSpace){if(mainList.length==1){if(mainWord==engWord){good()}}else{if(mainList.indexOf(engWord)!==-1){good()}}}else{if(mainList.indexOf(engWord.split(" ")[0])!==-1&&mainList.indexOf(engWord.split(" ")[0])!==-1){good()}}}if(result.isFinal){this.transcript+=result[0].transcript}else{interim_transcript+=result[0].transcript}}handler(interim_transcript)}}const recognizer=new Recognizer();function showText(a){txtInterim.value=a;txtMessage.value=recognizer.transcript}function start(){recognizer.start(showText);txtInterim.value="";txtMessage.value="";micro.src="{% static 'css/microphon2.png' %}"}function stop(){recognizer.stop();micro.src="{% static 'css/microphon.png' %}"}function good(){timerOn=false;document.body.style.background="#e0ffe9";document.getElementById("res").innerHTML="правильно";nextButton.disabled=false;ball++;res.style.color="#00c227";stop()}function coder(){var a="QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789".split("");var b="";for(var c=0;c<12;c++){var d=Math.floor(Math.random()*a.length);b+=a[d]}return b}function end(){if(promblock){document.getElementById("r").innerHTML="результат:";var a=document.getElementById("canvas").getContext("2d");a.font="72px serif";a.strokeText(ball+"/"+allBall,10,95)}document.getElementById("res").innerHTML="тест завершено";nextButton.style.background="#ff9580";nextButton.innerText="повторити";nextButton.onclick=function(){location.reload()};var b=coder();document.getElementById("timer_inp").innerHTML="ця оцінка збережена на сервері з унікальним ім'ям: "+b;document.getElementById("endMay").innerHTML="і буде перевірена якщо ви надішлете фотозвіт"}btnRecognize.addEventListener("click",()=>{if(!recognizer.isRecognizing){start()}else{stop()}});
+
+
+
+
+
+
+function activate() {
+
+progress.max = allBall
+
+if (document.getElementById("british").checked == true) {
+
+}
+
+if (document.getElementById("selfTest").checked == true) {
+  document.getElementById("prompt").style.display = "block";
+  document.getElementById("timer_inp").style.display = "none";
+  promblock = false;
+} else {
+  promblock = true;
+}
+document.getElementById("settings").style.visibility = "hidden";
+}
+
+function input() {
+
+if (ukrWords.length !== 0) {
+  if (nextButton.innerHTML !== "наступний тест") {
+    nextButton.innerHTML = "наступний тест";
+    activate();
+  }
+
+  btnRecognize.disabled = false;
+  nextButton.disabled = true;
+
+  random = Math.floor(Math.random() * ukrWords.length);
+  engWord = engWords[random];
+  isSpace = engWord.indexOf(" ") !== -1;
+  document.getElementById("quest").innerHTML = ukrWords[random];
+
+  if (!promblock) {
+    document.getElementById("promptText").innerHTML = engWord;
+  } else {
+    document.getElementById("timer_inp").innerHTML = time;
+    timerOn = true;
+    setTimeout(timer, 1000);
+  }
+
+  ukrWords.splice(random, 1);
+  engWords.splice(random, 1);
+
+  progress.value = allBall - engWords.length
+
+  txtInterim.value = "";
+  txtMessage.value = "";
+  document.body.style.background = "#ffffff";
+  document.getElementById("res").innerHTML = "";
+} else {
+  end();
+}
+}
+
+function timer() {
+var obj = document.getElementById("timer_inp");
+obj.innerHTML--;
+
+if (timerOn) {
+  if (obj.innerHTML == 0) {
+    document.getElementById("res").innerHTML = "час вичерпано";
+    btnRecognize.disabled = true;
+    nextButton.disabled = false;
+    setTimeout(function () {}, 1000);
+    document.body.style.background = "#ffd4d4";
+    stop();
+  } else {
+    setTimeout(timer, 1000);
+  }
+}
+}
+
+function isMobile() {
+return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
+const SpeechRecognition =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition ||
+window.mozSpeechRecognition ||
+window.msSpeechRecognition;
+
+class Recognizer {
+constructor() {
+  this.recognition = new SpeechRecognition();
+  this.recognition.lang = occent;
+  if (!isMobile()) {
+    this.recognition.continuous = true;
+    this.recognition.interimResults = true;
+  }
+  this.isRecognizing = false;
+  this.transcript = "";
+}
+
+start(handler) {
+  this.transcript = "";
+  this.recognition.onresult = (event) => {
+    this.onResult(event, handler);
+  };
+  this.recognition.start();
+  this.isRecognizing = true;
+  console.log("Started recognition");
+}
+
+stop() {
+  this.recognition.abort();
+  this.isRecognizing = false;
+  console.log("Stopped recognition");
+}
+
+onResult(event, handler) {
+  var interim_transcript = "";
+  for (var i = event.resultIndex; i < event.results.length; ++i) {
+    var result = event.results[i];
+
+    let mainWord = result[0].transcript.toLowerCase();
+    let mainList = mainWord.split(" ");
+
+    if (mainWord.indexOf(engWord) !== -1) {
+      if (!isSpace) {
+        if (mainList.length == 1) {
+          if (mainWord == engWord) {
+            good();
+          }
+        } else {
+          if (mainList.indexOf(engWord) !== -1) {
+            good();
+          }
+        }
+      } else {
+        if (
+          mainList.indexOf(engWord.split(" ")[0]) !== -1 &&
+          mainList.indexOf(engWord.split(" ")[0]) !== -1
+        ) {
+          good();
+        }
+      }
+    }
+
+    if (result.isFinal) {
+      this.transcript += result[0].transcript;
+    } else {
+      interim_transcript += result[0].transcript;
+    }
+  }
+  handler(interim_transcript);
+}
+}
+
+const recognizer = new Recognizer();
+
+function showText(text) {
+txtInterim.value = text;
+txtMessage.value = recognizer.transcript;
+}
+
+function start() {
+recognizer.start(showText);
+txtInterim.value = "";
+txtMessage.value = "";
+
+micro.src = "{% static 'images/microphon2.png' %}";
+}
+
+function stop() {
+recognizer.stop();
+
+micro.src = "{% static 'images/microphon.png' %}";
+}
+
+function good() {
+timerOn = false;
+document.body.style.background = "#e0ffe9";
+document.getElementById("res").innerHTML = "правильно";
+nextButton.disabled = false;
+ball++;
+res.style.color = "#00c227";
+stop();
+}
+
+function coder() {
+var chars = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789".split("");
+var result = "";
+for (var i = 0; i < 12; i++) {
+  var x = Math.floor(Math.random() * chars.length);
+  result += chars[x];
+}
+return result;
+}
+
+function end() {
+if (promblock) {
+  document.getElementById("r").innerHTML = "результат:";
+  var ctx = document.getElementById("canvas").getContext("2d");
+  ctx.font = "72px serif";
+  ctx.strokeText((ball + "/" + allBall), 10, 95);
+}
+document.getElementById("res").innerHTML = "тест завершено";
+
+nextButton.style.background = "#ff9580";
+nextButton.innerText = "повторити";
+nextButton.onclick = function () {
+  location.reload();
+};
+
+var result = coder()
+
+document.getElementById("timer_inp").innerHTML =
+  "ця оцінка збережена на сервері з унікальним ім'ям: " + result;
+document.getElementById("endMay").innerHTML =
+  "і буде перевірена якщо ви надішлете фотозвіт";
+}
+
+btnRecognize.addEventListener("click", () => {
+if (!recognizer.isRecognizing) {
+  start();
+} else {
+  stop();
+}
+});
+
+
+</script>
+
+{% endblock %}  
