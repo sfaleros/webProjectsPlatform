@@ -193,18 +193,18 @@ function timer() {
 var obj = document.getElementById("timer_inp");
 obj.innerHTML--;
 
-if (timerOn) {
-  if (obj.innerHTML == 0) {
-    document.getElementById("res").innerHTML = "час вичерпано";
-    btnRecognize.disabled = true;
-    nextButton.disabled = false;
-    setTimeout(function () {}, 1000);
-    document.body.style.background = "#ffd4d4";
-    stop();
-  } else {
-    setTimeout(timer, 1000);
+  if (timerOn) {
+    if (obj.innerHTML == 0) {
+      document.getElementById("res").innerHTML = "час вичерпано";
+      btnRecognize.disabled = true;
+      nextButton.disabled = false;
+      setTimeout(function () {}, 1000);
+      document.body.style.background = "#ffd4d4";
+      stop();
+    } else {
+      setTimeout(timer, 1000);
+    }
   }
-}
 }
 
 function isMobile() {
@@ -219,7 +219,15 @@ window.msSpeechRecognition;
 
 class Recognizer {
 constructor() {
-  this.recognition = new SpeechRecognition();
+
+  try{
+    this.recognition = new SpeechRecognition();
+  }catch(e){
+    nextButton.disabled = true;
+    micro.src = "{% static 'images/microphonCrossed.png' %}";
+    document.getElementById("res").innerHTML = "нажаль ваш браузер не підтримує цю функцію, спробуйте зайти на цей сайт через 'Google Chrome' ";
+  }
+
   this.recognition.lang = occent;
   if (!isMobile()) {
     this.recognition.continuous = true;
