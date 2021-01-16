@@ -1,7 +1,9 @@
 html, body {
     height: 100%;
   }
-  
+  * {
+    box-sizing: border-box;
+  }
   
   
   body {
@@ -11,26 +13,41 @@ html, body {
       *font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-family: monospace;
   }
-  
-  
+
+
+
+  A {
+    color: #006eff; 
+   }
+   A:visited {
+    color: #0022bb; 
+   }
+
+   .sidenav #h {
+    padding: 2% 2.6% 2% 5%;
+    text-decoration: none;
+    font-size: 2vw;
+    color: #818181;
+    display: block;
+}
   
   
   .sidenav {
       height: 100%;
-      width: 160px;
+      width: 10%;
       position: fixed;
       z-index: 1;
       top: 0;
       left: 0;
       background-color: #111;
       overflow-x: hidden;
-      padding-top: 20px;
+
   }
   
-  .sidenav a,h4 {
-      padding: 6px 8px 6px 16px;
+  .sidenav a {
+      padding: 2% 2.6% 2% 5%;
       text-decoration: none;
-      font-size: 25px;
+      font-size: 1.5vw;
       color: #818181;
       display: block;
   }
@@ -40,13 +57,15 @@ html, body {
   }
   
   .main {
-    margin-left: 160px; /* Same as the width of the sidenav */
-    font-size: 28px; /* Increased text to enable scrolling */
-    padding: 0px 10px;
+    margin-left: 10%; /* Same as the width of the sidenav */
+    font-size: 1.9vw; /* Increased text to enable scrolling */
+    padding: 0% 1%;
   }
   
-  
+/*  
   @media screen and (max-height: 450px) {
       .sidenav {padding-top: 15px;}
       .sidenav a {font-size: 18px;}
   }
+
+  */

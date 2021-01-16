@@ -31,10 +31,10 @@
         <br><br>
         2. натиснути на синю кнопку.<br>
         3. натиснути на мікрофон(він працює поки світиться червоним).<br>
-        4. прекласти та продиктувати слово що зявиться зверх.у<br>
+        4. пeрекласти та продиктувати слово що зявиться зверх.у<br>
         5. повторити.<br>
         <br>
-        зверніт увагу на те, що диктувати переклад потрібно чітко та гучно.<br> 
+        зверніть увагу на те, що диктувати переклад потрібно чітко та гучно.<br> 
         <br>
         деколи мікрофон припиняє розпізнавання, це означає,
         що він намагається розпізнати супутні шуми.
@@ -60,7 +60,7 @@
 <div id="prompt">
 <details>
   <summary>
-    підсказка
+    під казка
   </summary>
   <small>
     <p id="promptText"></p>
@@ -220,12 +220,20 @@ window.msSpeechRecognition;
 class Recognizer {
 constructor() {
 
+  if(window.location.protocol== "http:"){
+    nextButton.disabled = true;
+    btnRecognize.disabled = true;
+    micro.src = "{% static 'images/microphonCrossed.png' %}";
+    document.getElementById("res").innerHTML = "ви зайшли по некоректній силці, перейдіть за <a href='https://ingemdjangers.pythonanywhere.com/tests/'>цим посиланням</a>  ";
+  }
+
+
   try{
     this.recognition = new SpeechRecognition();
   }catch(e){
     nextButton.disabled = true;
     micro.src = "{% static 'images/microphonCrossed.png' %}";
-    document.getElementById("res").innerHTML = "нажаль ваш браузер не підтримує цю функцію, спробуйте зайти на цей сайт через 'Google Chrome' ";
+    document.getElementById("res").innerHTML = "на жаль, ваш браузер не підтримує цю функцію, спробуйте зайти на цей сайт через 'Google Chrome' ";
   }
 
   this.recognition.lang = occent;
