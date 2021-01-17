@@ -135,58 +135,57 @@ const nextButton = document.getElementById("nextButton");
 
 function activate() {
 
-progress.max = allBall
+  progress.max = allBall
 
-if (document.getElementById("british").checked == true) {
+  if (document.getElementById("british").checked == true) {
+    occent = "en-UK";
 
-}
+  }
 
-if (document.getElementById("selfTest").checked == true) {
-  document.getElementById("prompt").style.display = "block";
-  document.getElementById("timer_inp").style.display = "none";
-  promblock = false;
-} else {
-  promblock = true;
-}
-document.getElementById("settings").style.visibility = "hidden";
+  if (document.getElementById("selfTest").checked == true) {
+    document.getElementById("prompt").style.display = "block";
+    document.getElementById("timer_inp").style.display = "none";
+    promblock = false;
+  } else {
+    promblock = true;
+  }
+  document.getElementById("settings").style.visibility = "hidden";
 }
 
 function input() {
+  if (ukrWords.length !== 0) {
+    if (nextButton.innerHTML !== "наступний тест") {
+      nextButton.innerHTML = "наступний тест";
+      activate();
+    }
 
-if (ukrWords.length !== 0) {
-  if (nextButton.innerHTML !== "наступний тест") {
-    nextButton.innerHTML = "наступний тест";
-    activate();
-  }
+    btnRecognize.disabled = false;
+    nextButton.disabled = true;
+    random = Math.floor(Math.random() * ukrWords.length);
+    engWord = engWords[random];
+    isSpace = engWord.indexOf(" ") !== -1;
+    document.getElementById("quest").innerHTML = ukrWords[random];
 
-  btnRecognize.disabled = false;
-  nextButton.disabled = true;
+    if (!promblock) {
+      document.getElementById("promptText").innerHTML = engWord;
+    } else {
+      document.getElementById("timer_inp").innerHTML = time;
+      timerOn = true;
+      setTimeout(timer, 1000);
+    }
 
-  random = Math.floor(Math.random() * ukrWords.length);
-  engWord = engWords[random];
-  isSpace = engWord.indexOf(" ") !== -1;
-  document.getElementById("quest").innerHTML = ukrWords[random];
+    ukrWords.splice(random, 1);
+    engWords.splice(random, 1);
 
-  if (!promblock) {
-    document.getElementById("promptText").innerHTML = engWord;
+    progress.value = allBall - engWords.length
+
+    txtInterim.value = "";
+    txtMessage.value = "";
+    document.body.style.background = "#ffffff";
+    document.getElementById("res").innerHTML = "";
   } else {
-    document.getElementById("timer_inp").innerHTML = time;
-    timerOn = true;
-    setTimeout(timer, 1000);
+    end();
   }
-
-  ukrWords.splice(random, 1);
-  engWords.splice(random, 1);
-
-  progress.value = allBall - engWords.length
-
-  txtInterim.value = "";
-  txtMessage.value = "";
-  document.body.style.background = "#ffffff";
-  document.getElementById("res").innerHTML = "";
-} else {
-  end();
-}
 }
 
 function timer() {
@@ -218,15 +217,17 @@ window.mozSpeechRecognition ||
 window.msSpeechRecognition;
 
 class Recognizer {
+
 constructor() {
 
+/*
   if(window.location.protocol== "http:"){
     nextButton.disabled = true;
     btnRecognize.disabled = true;
     micro.src = "{% static 'images/microphonCrossed.png' %}";
     document.getElementById("res").innerHTML = "ви зайшли по некоректній силці, перейдіть за <a href='https://ingemdjangers.pythonanywhere.com/tests/'>цим посиланням</a>  ";
   }
-
+*/
 
   try{
     this.recognition = new SpeechRecognition();
@@ -235,7 +236,6 @@ constructor() {
     micro.src = "{% static 'images/microphonCrossed.png' %}";
     document.getElementById("res").innerHTML = "на жаль, ваш браузер не підтримує цю функцію, спробуйте зайти на цей сайт через 'Google Chrome' ";
   }
-
   this.recognition.lang = occent;
   if (!isMobile()) {
     this.recognition.continuous = true;
@@ -244,6 +244,7 @@ constructor() {
   this.isRecognizing = false;
   this.transcript = "";
 }
+
 
 start(handler) {
   this.transcript = "";
@@ -282,7 +283,6 @@ onResult(event, handler) {
         }
       } else {
         if (
-          mainList.indexOf(engWord.split(" ")[0]) !== -1 &&
           mainList.indexOf(engWord.split(" ")[0]) !== -1
         ) {
           good();
@@ -332,7 +332,7 @@ stop();
 }
 
 function coder() {
-var chars = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789".split("");
+var chars = "XZYqwertyuiopasdfghjklzxcvbnm0123456789".split("");
 var result = "";
 for (var i = 0; i < 12; i++) {
   var x = Math.floor(Math.random() * chars.length);
