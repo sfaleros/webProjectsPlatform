@@ -16,10 +16,8 @@ def index(request):
 	#latest_articles_list = Article.objects.order_by("-id") #-pubdate
 
 	for i in test :
-		print(i)
-		if i.test_tag1 in "10b 10б 10-b 10 b 10-б 10 б" :
+		if i.test_tag1 in "10b 10б 10-b 10 b 10B 10-б 10 б" :
 			mainTests.append(i)
-
 
 
 
@@ -41,20 +39,20 @@ def detail(request , test_id ):
 	#engStr = (((test.test_eng.replace(" ", "")).replace("\n", "")).replace("&", " ")).lower()
 	#ukrStr = (((test.test_ukr.replace(" ", "")).replace("\n", "")).replace("&", " ")).lower()
 
-	def delSpace(list):
+	def delSpace(list, isEng):
 		newlist = []
 		for i in list :
 			i = i.strip()
-			if i != '':
-				if i.count(" ") > 1 :
+			if i != '' :
+				if i.count(" ") > 1 and isEng :
 					i  =  i.replace(" ", "", (i.count(" ")-1))
 				newlist.append(i)
 			
 		return  newlist
     		
     		
-	engWords = delSpace(test.test_eng.replace("\n", "").lower().split(","))
-	ukrWords = delSpace(test.test_ukr.replace("\n", "").lower().split(","))
+	engWords = delSpace(test.test_eng.replace("\n", " ").lower().split(","), True)
+	ukrWords = delSpace(test.test_ukr.replace("\n", " ").lower().split(","), False)
 
 	
 	#print(ukrWords)

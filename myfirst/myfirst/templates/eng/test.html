@@ -6,6 +6,57 @@
 {% block content %}
 
 
+
+
+
+
+
+<div id="main">
+  <center id="center">
+
+
+
+  <h2 id="quest"></h2>
+
+  <div id="prompt">
+  <details>
+    <summary>
+      під казка
+    </summary>
+    <small>
+      <p id="promptText"></p>
+    </small>
+  </details>
+  </div>
+
+
+  <p>
+    <input type="text", id="interim" ,  disabled , readonly>
+  </p>
+  <p>
+    <input id="message", rows="1", disabled , readonly> </input>
+  </p>
+
+  <button id="recognize" >
+    <img src="{% static 'images/microphon.png' %}" , id="micro" />
+  </button>
+
+  <h3 id="res"></h3>
+
+  <button id="nextButton", onclick="input()" >розпочати тест</button>
+  <table>
+    <td><h3 id="r"></h3></td>
+    <td><canvas id="canvas"></canvas></td>
+  </table>
+  <h3 id="r"></h3>
+
+  <div id="timer_inp"></div>
+  <div id="endMay"></div>
+
+  </center>
+</div>
+
+
 <div id="settings">
 
   <p>Британська вимова
@@ -45,54 +96,6 @@
       </br>
     </small>
   </details>
-</div>
-
-
-
-
-<div id="main">
-<center id="center">
-
-
-
-<h2 id="quest"></h2>
-
-<div id="prompt">
-<details>
-  <summary>
-    під казка
-  </summary>
-  <small>
-    <p id="promptText"></p>
-  </small>
-</details>
-</div>
-
-
-<p>
-  <input type="text", id="interim" ,  disabled , readonly>
-</p>
-<p>
-  <input id="message", rows="1", disabled , readonly> </input>
-</p>
-
-<button id="recognize" >
-  <img src="{% static 'images/microphon.png' %}" , id="micro" />
-</button>
-
-<h3 id="res"></h3>
-
-<button id="nextButton", onclick="input()" >розпочати тест</button>
-<table>
-  <td><h3 id="r"></h3></td>
-  <td><canvas id="canvas"></canvas></td>
-</table>
-<h3 id="r"></h3>
-
-<div id="timer_inp"></div>
-<div id="endMay"></div>
-
-</center>
 </div>
 
 
@@ -168,6 +171,7 @@ function input() {
 
     if (!promblock) {
       document.getElementById("promptText").innerHTML = engWord;
+      nextButton.disabled = false;
     } else {
       document.getElementById("timer_inp").innerHTML = time;
       timerOn = true;
@@ -225,7 +229,10 @@ constructor() {
     nextButton.disabled = true;
     btnRecognize.disabled = true;
     micro.src = "{% static 'images/microphonCrossed.png' %}";
-    document.getElementById("res").innerHTML = "ви зайшли по некоректній силці, перейдіть за <a href='https://ingemdjangers.pythonanywhere.com/tests/'>цим посиланням</a>  ";
+    let currentUrl = (window.location.href).split("/")
+    let currentid = currentUrl[4]
+    document.getElementById("res").innerHTML = `визайшли по некоректній силці, перейдіть за <a href='https://ingemdjangers.pythonanywhere.com/tests/${currentid}'>цим посиланням</a> `;
+    document.getElementById("res").className="text-danger"
   }
 */
 
@@ -235,6 +242,7 @@ constructor() {
     nextButton.disabled = true;
     micro.src = "{% static 'images/microphonCrossed.png' %}";
     document.getElementById("res").innerHTML = "на жаль, ваш браузер не підтримує цю функцію, спробуйте зайти на цей сайт через 'Google Chrome' ";
+    document.getElementById("res").className="text-danger"
   }
   this.recognition.lang = occent;
   if (!isMobile()) {
@@ -282,9 +290,7 @@ onResult(event, handler) {
           }
         }
       } else {
-        if (
-          mainList.indexOf(engWord.split(" ")[0]) !== -1
-        ) {
+        if (mainList.indexOf(engWord.split(" ")[0]) !== -1) {
           good();
         }
       }
@@ -342,26 +348,28 @@ return result;
 }
 
 function end() {
-if (promblock) {
-  document.getElementById("r").innerHTML = "результат:";
-  var ctx = document.getElementById("canvas").getContext("2d");
-  ctx.font = "72px serif";
-  ctx.strokeText((ball + "/" + allBall), 10, 95);
-}
-document.getElementById("res").innerHTML = "тест завершено";
+  if (promblock) {
+    document.getElementById("r").innerHTML = "результат:";
+    var ctx = document.getElementById("canvas").getContext("2d");
+    ctx.font = "72px serif";
+    ctx.strokeText((ball + "/" + allBall), 10, 95);
 
-nextButton.style.background = "#ff9580";
-nextButton.innerText = "повторити";
-nextButton.onclick = function () {
-  location.reload();
-};
+    
+    var result = coder()
 
-var result = coder()
+    document.getElementById("timer_inp").innerHTML =
+    "ця оцінка збережена на сервері з унікальним ім'ям: " + result;
+    document.getElementById("endMay").innerHTML =
+    "і буде перевірена якщо ви надішлете фотозвіт";
+  }
+  
 
-document.getElementById("timer_inp").innerHTML =
-  "ця оцінка збережена на сервері з унікальним ім'ям: " + result;
-document.getElementById("endMay").innerHTML =
-  "і буде перевірена якщо ви надішлете фотозвіт";
+  nextButton.style.background = "#ff9580";
+  nextButton.innerText = "повторити";
+  nextButton.onclick = function () {
+    location.reload();
+  };
+
 }
 
 btnRecognize.addEventListener("click", () => {
