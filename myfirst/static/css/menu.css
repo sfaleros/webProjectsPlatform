@@ -16,6 +16,19 @@ html, body {
 
 
 
+  a{
+    font-size: 1.1em;
+  }
+
+  h2{
+    font-size: 1.7em;
+  }
+
+  
+  h3{
+    font-size: 1.5em;
+  }
+
   A {
     color: #006eff; 
    }
@@ -57,15 +70,118 @@ html, body {
   }
   
   .main {
+    height: 100%;
     margin-left: 10%; /* Same as the width of the sidenav */
     font-size: 1.9vw; /* Increased text to enable scrolling */
     padding: 0% 1%;
   }
-  
-/*  
-  @media screen and (max-height: 450px) {
-      .sidenav {padding-top: 15px;}
-      .sidenav a {font-size: 18px;}
+
+
+
+  @media (orientation: portrait){
+
+
+  .main {
+      margin-left: 18%;
   }
 
-  */
+  .sidenav {
+      height: 100%;
+      width: 18%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+
+  }
+
+  
+  a{
+    font-size: 2.3em;
+  }
+
+  h2{
+    font-size: 3.4em;
+  }
+
+  
+  h3{
+    font-size: 3em;
+  }
+
+}
+
+
+/*
+  
+  
+@media (orientation: portrait){
+
+  html, body {
+    height: 100%;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  
+  
+  body {
+      background-color: #3e3e3f;
+      background-image: linear-gradient(19deg, #3e3e3f 0%, #34315e 50%, #2c3b73 100%) ;  
+      color: aliceblue;
+      *font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: monospace;
+  }
+
+
+
+  A {
+    color: #006eff; 
+   }
+   A:visited {
+    color: #0022bb; 
+   }
+
+   .sidenav #h {
+    padding: 2% 2.6% 2% 5%;
+    text-decoration: none;
+    font-size: 2vw;
+    color: #818181;
+    display: block;
+}
+  
+  
+  .sidenav {
+      height: 100%;
+      width: 10%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+
+  }
+  
+  .sidenav a {
+      padding: 2% 2.6% 2% 5%;
+      text-decoration: none;
+      font-size: 1.5vw;
+      color: #818181;
+      display: block;
+  }
+  
+  .sidenav a:hover {
+      color: #f1f1f1;
+  }
+  
+  .main {
+    margin-left: 10%; 
+    font-size: 1.9vw; 
+    padding: 0% 1%;
+  }
+
+  }
+*/

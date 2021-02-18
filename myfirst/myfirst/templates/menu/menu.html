@@ -8,6 +8,15 @@
 	<meta property="og:title" content="проектний репозиторій"/>
 	<meta property="og:image" content="{% static 'images/ms.jpg' %}"/>
 
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
 	<title>галерея</title>
 	<link rel="stylesheet" href="{% static 'css/menu.css' %}" />
 	<link rel="icon" href="{% static 'icons/nuclear.png' %}">
@@ -27,53 +36,56 @@
 
 <div class="main">
 
-<h2 id="center">шкільні проекти</h2>
+	<div id="main">
+
+		<h2 id="center">шкільні проекти</h2>
 
 
-<h4>хімія</h4>
-<ul>
-	<li> 			
-		<a href="chem1">3D Hydrocarbons</a>
-	</li>			
-</ul>
-
-
-<h4>інформатика</h4>
-<ul>
-	<li> 			
-		<a href="https://github.com/sfaleros/mathTest.git">Android App(in kotlin)</a>
-
+		<h3>хімія</h3>
 		<ul>
 			<li> 			
-				<a href="APK">APK</a>
+				<a href="chem1">3D Hydrocarbons</a>
 			</li>			
 		</ul>
-	</li>
-	
-	<br>
 
-	<li> 			
-		<a href="https://github.com/sfaleros/webProjectsPlatform.git">this site(on github)</a>
 
+		<h3>інформатика</h3>
 		<ul>
 			<li> 			
-				<a href="articles">counter</a>
+				<a href="https://github.com/sfaleros/mathTest.git">Android App(in kotlin)</a>
+
+				<ul>
+					<li> 			
+						<a href="APK">APK</a>
+					</li>			
+				</ul>
 			</li>
 			
+			<br>
+
 			<li> 			
-				<a href="/tests">speech test</a>
+				<a href="https://github.com/sfaleros/webProjectsPlatform.git">this site(on github)</a>
+
+				<ul>
+					<li> 			
+						<a href="articles">counter</a>
+					</li>
+					
+					<li> 			
+						<a href="/tests">speech test</a>
+					</li>
+				</ul> 
+
+			<br>	
+
+			<li> 			
+				<a href="https://drive.google.com/drive/folders/1uwr0FqX-E6jCE_1Bm77pinzWN-7jOu8U?usp=sharing">engReader</a>
 			</li>
-		</ul> 
 
-	<br>	
-
-	<li> 			
-		<a href="https://drive.google.com/drive/folders/1uwr0FqX-E6jCE_1Bm77pinzWN-7jOu8U?usp=sharing">engReader</a>
-	</li>
-
-	</li>
-</ul>
-
+			</li>
+		</ul>
+	
+	</div>
 
 </div>
 </body>
