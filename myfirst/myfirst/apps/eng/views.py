@@ -3,6 +3,9 @@ from django.shortcuts import render
 #from django.urls import reverse
 from .models import Test #, Obj
 import json
+import datetime
+import math
+import hashlib 
 
 
 
@@ -29,12 +32,34 @@ def index(request):
 	return render(request , 'eng/tests.html' , {"mainTests" : mainTests}) #'latest_articles_list' : latest_articles_list ,
 
 def detail(request , test_id ):
-
-
+    	
 	try :
 		test = Test.objects.get(id = test_id)
 	except :
 		raise Http404("тест не знайдена")
+    	
+
+		
+	if request.method=='POST':
+		name = request.POST['sendName']
+		ball = request.POST['ball']
+		ballHash = request.POST['md']
+		now = datetime.datetime.now()
+		d = now.day
+		h = now.hour
+		m = now.minute
+
+		ball = str(math.sqrt((d*h+1+m)/(int(ball)+1)))
+		hashSert = hashlib.md5(ball.encode('utf-8')).hexdigest()
+
+		print(hashSert)
+		print(ballHash)
+
+		if hashSert!=ballHash:
+			raise Http404("нажаль ваш результат не збережено, через критичну помилку. будь ласка повідомте про неї розробнику \n" + str(d) +"."+ str(h) +":" + str(m) +"      " + ball + "\n \n          " + ballHash + "\n        " + hashSert )
+		
+		print("ffffffff")
+
 
 	#engStr = (((test.test_eng.replace(" ", "")).replace("\n", "")).replace("&", " ")).lower()
 	#ukrStr = (((test.test_ukr.replace(" ", "")).replace("\n", "")).replace("&", " ")).lower()
@@ -91,9 +116,11 @@ def detail(request , test_id ):
 
 	 { "dict" : json.dumps(dict)}
 	 {"ukrWords" : json.dumps(ukrWords) , "engWords" : json.dumps(engWords) }
+	 
 	'''
 
-	return render(request ,'eng/test.html' , {"ukrWords" : json.dumps(ukrWords) , "engWords" : json.dumps(engWords)  , "time" : test.test_time } )
+
+	return render(request ,'eng/test.html' , {"ukrWords" : json.dumps(ukrWords) , "engWords" : json.dumps(engWords)  , "time" : test.test_time, "test" : test}  )
 
 
 
@@ -128,5 +155,7 @@ def groupdetail(request , obj_id ):
 
 	return render(request , 'articles/groupdetail.html' , {'topic_list' : topic_list })
 
-'''
+
+
+  // modelform.instance.field} //'''
 

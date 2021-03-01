@@ -123,6 +123,9 @@
     display: none; 
   }
 
+  #endMay{
+    display: none; 
+  }
 
 }
 
@@ -265,6 +268,10 @@
   }
 
   #prompt{
+    display: none; 
+  }
+
+  #endMay{
     display: none; 
   }
 
