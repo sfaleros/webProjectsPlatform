@@ -23,6 +23,28 @@ class Test(models.Model):
 		verbose_name_plural = "тести"
 
 
+
+class Mark(models.Model):
+
+	test = models.ForeignKey(Test , on_delete =  models.CASCADE)
+
+
+	name =models.CharField("ім'я" , max_length = 30 )
+	ball= models.DecimalField("оцінка", max_digits=5, decimal_places=1)
+
+
+	def __str__(self) :
+		return (self.name + "--" + str(self.ball)+ ' ,  в :"' + self.test.test_title+ '"')
+
+	#def was_published_recently(self):
+	#	return self.pub_date >= (timezone.now() - datetime.timedelta(day = 7))
+
+	class Meta :
+		verbose_name = "оцінка"
+		verbose_name_plural = "оцінки"
+
+
+
 '''class Comment(models.Model) :
 	article = models.ForeignKey(Article , on_delete =  models.CASCADE)
 	author_name = models.CharField('імя автора' , max_length = 50)

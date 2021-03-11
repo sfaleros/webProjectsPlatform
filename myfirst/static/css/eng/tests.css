@@ -1,0 +1,73 @@
+
+@media (orientation: landscape) {
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-size: 1vw;
+    font-family: sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+  }
+}
+
+  #toTest{
+  font-size: large;
+  width: 60%;
+  margin-top: 0.2%;
+  background-color: #2196F3;
+  border-radius: 12%;
+  border: 2px solid #1360a0;
+  
+  
+}
+
+
+footer{
+    background-color: #014f8f;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:20px;
+    width:100%;
+  }
+  
+
+  
+  
+
+a{
+
+  background-color: transparent;
+}
+  
+
+#adm{
+  background-color: #9dd4ff;
+}
+
+hr{
+    background-color: #012441;
+    height: 30px;
+}
+#list{
+    margin-left: 20%;
+    height: 70%;
+    width: 100%;
+  }
+
+
+
+#warping{
+  color: rgb(235, 4, 50);
+  
+}
+  
+  
+
+

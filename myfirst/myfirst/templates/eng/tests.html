@@ -1,12 +1,16 @@
 {% extends 'engBase.html' %}
+{% load static %}
 
 {% block title %}EngTest{% endblock %}
 
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/eng/tests.css' %}" />
+{% endblock %}
 
 
 {% block content %}
 
-<a href="/admin">панель адміністратора
+<a href="/admin" id="adm">панель адміністратора
 </a>
 
 <center><h3>10Б</h3></center>
@@ -16,7 +20,7 @@
 	{% if mainTests %}
 		{% for i in mainTests %}	
 				<a  href="{% url 'eng:detail' i.id %}">
-					<button id="toTest">{{i.test_title}}</button>
+					<button id="toTest" >{{i.test_title}}</button>
 				</a><br>	
 		{% endfor %}
 
@@ -28,13 +32,14 @@
 
 </div>
 
+<div id="warning">
 <center>
 	<hr>
 	<h4 id="warping">тест буде працювати тільки в компютерних браузерах Chrome та Firefox</h4>
-	<h5 id="warping">також можуть виникнути проблеми з прохожденням тесту на мобільних пристроях</h5>
+	<h5 id="warping">також можуть виникнути незручності з прохожденням тесту на мобільних пристроях (підтримується більшістю браузерів)</h5>
 
 </center>
-
+</div>
 
 <footer></footer>
 

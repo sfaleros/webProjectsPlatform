@@ -1,5 +1,5 @@
 from django.http import Http404 , request
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 #from django.urls import reverse
 from .models import Test #, Obj
 import json
@@ -39,7 +39,7 @@ def detail(request , test_id ):
 		raise Http404("тест не знайдена")
     	
 
-		
+
 	if request.method=='POST':
 		name = request.POST['sendName']
 		ball = request.POST['ball']
@@ -49,16 +49,19 @@ def detail(request , test_id ):
 		h = now.hour
 		m = now.minute
 
-		ball = str(math.sqrt((d*h+1+m)/(int(ball)+1)))
-		hashSert = hashlib.md5(ball.encode('utf-8')).hexdigest()
+		timeBall = str(math.sqrt((d*h+1+m)/(float(ball)+1)))
+		hashSert = hashlib.md5(timeBall.encode('utf-8')).hexdigest()
 
 		print(hashSert)
 		print(ballHash)
 
 		if hashSert!=ballHash:
-			raise Http404("нажаль ваш результат не збережено, через критичну помилку. будь ласка повідомте про неї розробнику \n" + str(d) +"."+ str(h) +":" + str(m) +"      " + ball + "\n \n          " + ballHash + "\n        " + hashSert )
+			raise Http404("нажаль ваш результат не збережено, через критичну помилку. будь ласка повідомте про неї розробнику \n" + str(d) +"."+ str(h) +":" + str(m) +"      " + ball + "\n \n          " + ballHash + "\n   !=     " + hashSert )
 		
 		print("ffffffff")
+		test.mark_set.create(name = str(name) , ball = float(ball))
+		return redirect('/tests/')
+
 
 
 	#engStr = (((test.test_eng.replace(" ", "")).replace("\n", "")).replace("&", " ")).lower()

@@ -1,30 +1,100 @@
+
+
+
+canvas{
+  width: 200px;
+  height: 60px;
+}
+
+
+footer{
+  background-color: #014f8f;
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height:30px;
+  width:100%;
+}
+
+
+progress {
+  height: 100%;
+  width: 100%;
+}
+
+
+button:focus {
+  outline: none;
+}
+
+button > img{
+  background-color: transparent;
+  border: none;
+  width:100%;
+  height:100%;
+}
+
+
+
+
+
+#center{
+  width:100%;
+  height:100%;
+}
+
+
+
+#interim{
+  border-radius: 15%;
+  border: 2px solid #b6cadb;
+  background-color: #eff8ff;
+  font-size: 2vw;
+  width: 40%;
+  height: 16%;
+}
+
+#nextButton:active{
+  background-color: rgb(0, 81, 128);
+}
+
+
+#prompt{
+  display: none; 
+}
+
+#endMay{
+  border: 3.5px double #023a68 ;
+  display: none; 
+}
+
+
+
+.submit{
+  background-color: #2196F3;
+}
+
+
+
+
+
+
+
+
+
 @media (orientation: portrait){
 
 
   body {
+    width: 100%;
     font-size: 100%;
     font-family: sans-serif;
 
 
   }
 
-  a{
-    background-color: #8064ff;
-  }
 
-  progress {
-    height: 100%;
-    width: 100%;
-  }
 
-  footer{
-    background-color: #014f8f;
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    height:30px;
-    width:100%;
-  }
 
   #recognize {
     width:60%;
@@ -32,26 +102,6 @@
     background-color: transparent;
     border: none;
 
-  }
-  button:focus {
-    outline: none;
-  }
-
-  canvas{
-    width: 200px;
-    height: 80px;
-  }
-
-  button > img{
-    background-color: transparent;
-    border: none;
-    width:100%;
-    height:100%;
-  }
-
-  #center{
-    width:100%;
-    height:100%;
   }
 
 
@@ -64,37 +114,6 @@
     border: 3px solid #124874;
   }
 
-  #nextButton:active{
-    background-color: rgb(0, 81, 128);
-  }
-
-  #toTest{
-    font-size: large;
-    width: 60%;
-    height: 5%;
-    background-color: #2196F3;
-    border-radius: 12%;
-    border: 2px solid #1360a0;
-    margin-top: 0.3%;
-
-  }
-
-  #list{
-    margin-left: 20%;
-    height: 70%;
-    width: 100%;
-  }
-
-
-  #warping{
-  color: rgb(235, 4, 50);
-
-  }
-
-  #interim{
-    width: 90%;
-    height: 6%;
-  }
 
 
 
@@ -106,6 +125,7 @@
   }
 
   #main{
+
     height: 80%;
     width: 96%;
     margin: 2%;
@@ -119,15 +139,17 @@
     width: 96%;
   }
 
-  #prompt{
-    display: none; 
-  }
-
-  #endMay{
-    display: none; 
-  }
 
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -147,27 +169,10 @@
 
   }
 
-  progress {
-    height: 100%;
-    width: 100%;
-  }
+  
 
-  canvas{
-    width: 200px;
-    height: 80px;
-  }
 
-  a{
-    background-color: #8064ff;
-  }
-  footer{
-    background-color: #014f8f;
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    height:30px;
-    width:100%;
-  }
+
 
   #recognize {
     width:40%;
@@ -176,21 +181,7 @@
     border: none;
 
   }
-  button:focus {
-    outline: none;
-  }
 
-  button > img{
-    background-color: transparent;
-    border: none;
-    width:100%;
-    height:100%;
-  }
-
-  #center{
-    width:100%;
-    height:100%;
-  }
 
 
   #nextButton{
@@ -201,44 +192,6 @@
     border-radius: 29%;
     border: 3px solid #124874;
   }
-
-  #nextButton:active{
-    background-color: rgb(0, 81, 128);
-  }
-
-  #toTest{
-    font-size: large;
-    width: 60%;
-    height: 5%;
-    background-color: #2196F3;
-    border-radius: 12%;
-    border: 2px solid #1360a0;
-    margin-top: 0.3%;
-
-  }
-
-  #list{
-    margin-left: 20%;
-    height: 70%;
-    width: 100%;
-  }
-
-
-  #warping{
-  color: rgb(235, 4, 50);
-
-  }
-
-  #interim{
-    border-radius: 15%;
-    border: 2px solid #b6cadb;
-    background-color: #eff8ff;
-
-    font-size: 2vw;
-    width: 40%;
-    height: 16%;
-  }
-
 
 
 
@@ -267,17 +220,9 @@
     width: 27%;
   }
 
-  #prompt{
-    display: none; 
-  }
-
-  #endMay{
-    display: none; 
-  }
 
 
 }
-
 
 
 
@@ -339,6 +284,7 @@ transition: .4s;
 .slider:before {
 position: absolute;
 content: "";
+
 height: 26px;
 width: 26px;
 left: 4px;
