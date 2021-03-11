@@ -9,7 +9,7 @@
 {% extends 'engBase.html' %}
 {% load static %}
 
-{% block title %}EngTest{% endblock %}
+{% block title %}{{test.test_title}}{% endblock %}
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/eng/mainStyle.css' %}" />
@@ -104,11 +104,10 @@
         (це можна зробити завдяки голосовому пошуку Google).
         <br><br>
         2. натиснути на синю кнопку.<br>
-        3. натиснути на мікрофон(він працює поки світиться червоним).<br>
-        4. пeрекласти та продиктувати слово що зявиться зверх.у<br>
+        3. натиснути на мікрофон(під час запису світиться червоним).<br>
+        4. перекласти та продиктувати переклад слова що зявиться зверху<br>
         5. повторити.<br>
         <br>
-        зверніть увагу на те, що диктувати переклад потрібно чітко та гучно.<br> 
         <br>
         деколи мікрофон припиняє розпізнавання, це означає,
         що він намагається розпізнати супутні шуми.
@@ -191,7 +190,6 @@ function sleep(ms) {
 }
 
 
-
 function main(){
 
 
@@ -214,7 +212,7 @@ function main(){
     }
     document.getElementById("settings").style.visibility = "hidden";
 
-
+    nextButton.innerHTML = "наступний тест";
     $("nextButton").attr("onclick","input()");
     input()
 

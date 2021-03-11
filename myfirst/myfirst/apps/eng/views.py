@@ -67,20 +67,22 @@ def detail(request , test_id ):
 	#engStr = (((test.test_eng.replace(" ", "")).replace("\n", "")).replace("&", " ")).lower()
 	#ukrStr = (((test.test_ukr.replace(" ", "")).replace("\n", "")).replace("&", " ")).lower()
 
-	def delSpace(list, isEng):
+	def delSpace(list, ):  #isEng було
 		newlist = []
 		for i in list :
 			i = i.strip()
 			if i != '' :
-				if i.count(" ") > 1 and isEng :
-					i  =  i.replace(" ", "", (i.count(" ")-1))
+				if i.count(" ") > 1  :
+					i = ' '.join(i.split())
+
+				#	i  =  i.replace(" ", "", (i.count(" ")-1)) --------------------не пригодилось
 				newlist.append(i)
 			
 		return  newlist
     		
     		
-	engWords = delSpace(test.test_eng.replace("\n", " ").lower().split(","), True)
-	ukrWords = delSpace(test.test_ukr.replace("\n", " ").lower().split(","), False)
+	engWords = delSpace(test.test_eng.replace("\n", " ").lower().split(","))
+	ukrWords = delSpace(test.test_ukr.replace("\n", " ").lower().split(",")) 
 
 	
 	#print(ukrWords)

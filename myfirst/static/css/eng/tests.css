@@ -33,7 +33,7 @@ footer{
     position:fixed;
     left:0px;
     bottom:0px;
-    height:20px;
+    height:3%;
     width:100%;
   }
   
@@ -48,7 +48,8 @@ a{
   
 
 #adm{
-  background-color: #9dd4ff;
+  background-color: #bbdef8;
+  color: #012441;
 }
 
 hr{
